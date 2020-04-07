@@ -36,6 +36,8 @@ type Props = {
     defaultValue?: SelectOptionValueProp,
     /** An optional error to show within a tooltip. */
     error?: React.Node,
+    /** An optional header section to show within the dropdown list */
+    headerContent?: React.Node,
     /** The select button is disabled if true */
     isDisabled?: boolean,
     multiple: boolean,
@@ -356,7 +358,7 @@ class BaseSelectField extends React.Component<Props, State> {
     };
 
     render() {
-        const { className, multiple } = this.props;
+        const { className, headerContent, multiple } = this.props;
         const { isOpen } = this.state;
 
         // @TODO: Need invariants on specific conditions.
@@ -386,6 +388,7 @@ class BaseSelectField extends React.Component<Props, State> {
                         })}
                     >
                         <ul className="overlay" id={this.selectFieldID} role="listbox" {...listboxProps}>
+                            {headerContent}
                             {this.renderSelectOptions()}
                         </ul>
                     </div>
